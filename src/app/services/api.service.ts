@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap, throwError } from 'rxjs';
 
+// In HTTP, GET requests are cached. POST, PUT, and DELETE requests are not cached because they change the data in the server.
+
 @Injectable({
   providedIn: 'root',
 })

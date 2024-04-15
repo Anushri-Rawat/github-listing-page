@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class UserReposComponent {
   @Input() userRepos: any = null;
   @Input() username: string = '';
-  @Input() reposPerPage: number = 20;
+  @Input() reposPerPage: number = 10;
   @Input() page: number = 1;
   @Input() totalRepos: number = 1;
 
@@ -18,7 +18,20 @@ export class UserReposComponent {
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
     const day = date.getDate();
     const monthIndex = date.getMonth();
     const year = date.getFullYear();

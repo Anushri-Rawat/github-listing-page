@@ -42,7 +42,7 @@ export class PaginationComponent {
         this.userReposUpdated.emit(this.userRepos);
       }
     } catch (error: any) {
-      this.toast.error(error.error.message, 'Error');
+      this.toast.error(error.error.message || 'Something went wrong!', 'Error');
     }
     console.log(this.userRepos);
   }

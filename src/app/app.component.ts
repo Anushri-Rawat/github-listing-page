@@ -9,17 +9,31 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent {
   username: string = '';
-  reposPerPage: number = 20;
+  reposPerPage: number = 10;
   page: number = 1;
   userDetails: any = null;
   userRepos: any = null;
   userNotFoundError: boolean = false;
   totalRepos: number = 1;
+  showSearchBox: boolean = true;
   constructor(private apiService: ApiService, private toast: ToastrService) {}
+
+  setToInitialState() {
+    this.userDetails = null;
+    this.userRepos = null;
+  }
+
+  goBackHandler() {
+    this.showSearchBox = true;
+    this.username = '';
+    this.setToInitialState();
+  }
 
   async onSubmit(event: Event) {
     event.preventDefault();
+    this.setToInitialState();
     if (this.username.trim()) {
+      this.showSearchBox = false;
       try {
         this.userDetails = await this.apiService.getUser(this.username);
         this.totalRepos = this.userDetails.public_repos;
@@ -31,9 +45,13 @@ export class AppComponent {
         if (Array.isArray(repoData) && repoData.length > 0)
           this.userRepos = repoData;
       } catch (error: any) {
-        this.toast.error(error.error.message);
+        this.showSearchBox = true;
+        this.setToInitialState();
+        this.toast.error(error.error.message || 'Something went wrong!');
       }
-    } else this.toast.error('Please enter a valid GitHub username.');
+    } else {
+      this.toast.error('Please enter a valid GitHub username.');
+    }
   }
 
   onUserReposUpdated(updatedUserRepos: any) {
