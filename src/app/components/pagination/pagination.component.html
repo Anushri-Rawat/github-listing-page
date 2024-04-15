@@ -1,0 +1,28 @@
+<div
+  class="flex flex-col md:flex-row md:flex-wrap items-center justify-around my-8 w-full"
+>
+  <!-- Pagination Controls -->
+  <div class="flex items-center">
+    <pagination-controls
+      id="custom-pagination-id"
+      (pageChange)="pageChangeHandler($event)"
+      (pageBoundsCorrection)="pageChangeHandler($event)"
+    ></pagination-controls>
+  </div>
+
+  <!-- Dropdown for Items Per Page -->
+  <div class="flex ml-4 items-center">
+    <label for="itemsPerPage" class="text-gray-600 mr-2">Repos Per Page:</label>
+    <select
+      [(ngModel)]="reposPerPage"
+      (ngModelChange)="repoChangeHandler($event)"
+      name="reposPerPage"
+      id="reposPerPage"
+      class="rounded-md"
+    >
+      <option *ngFor="let option of [10, 20, 50, 100]" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</div>

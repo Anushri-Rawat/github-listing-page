@@ -1,5 +1,46 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="w-full h-screen">
+  <form (ngSubmit)="onSubmit($event)" class="mx-auto bg-white p-2 rounded-lg">
+    <div
+      class="flex flex-wrap md:flex-nowrap gap-2 items-center justify-center border-blue-500 py-4"
+    >
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+        alt=""
+        class="h-10 w-10"
+      />
+      <input
+        type="search"
+        [(ngModel)]="username"
+        name="username"
+        placeholder="Enter GitHub username"
+        class="bg-transparent w-auto py-2 px-4 leading-tight focus:outline-none border font-normal text-md md:min-w-[320px]"
+      />
+      <button
+        type="submit"
+        class="flex-shrink-0 bg-black border-none text-md border-4 text-white py-[6px] px-4 rounded-sm font-bold"
+      >
+        Search User
+      </button>
+    </div>
+  </form>
+  <!-- <router-outlet></router-outlet> -->
+  <div *ngIf="username && username.trim().length > 0">
+    <app-user-details [userDetails]="userDetails"></app-user-details>
+    <app-user-repos
+      [userRepos]="userRepos"
+      [username]="username"
+      [page]="page"
+      [reposPerPage]="reposPerPage"
+      [totalRepos]="totalRepos"
+    ></app-user-repos>
+    <app-pagination
+      [page]="page"
+      [reposPerPage]="reposPerPage"
+      [username]="username"
+      [userRepos]="userRepos"
+      (userReposUpdated)="onUserReposUpdated($event)"
+      (pageUpdated)="onPageNumberUpdated($event)"
+      (reposPerPageUpdated)="onRepoPerPageUpdated($event)"
+    ></app-pagination>
   </div>
 </div>

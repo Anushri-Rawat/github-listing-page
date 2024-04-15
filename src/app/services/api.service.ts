@@ -3,17 +3,26 @@ import { Injectable } from '@angular/core';
 import { tap, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  public API_URL = 'https://api.github.com/';
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
-
-  getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+  async getUser(githubUsername: string) {
+    return await this.httpClient
+      .get(this.API_URL + 'users/' + githubUsername)
+      .toPromise();
   }
-
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  async getRepoDetails(
+    githubUsername: string,
+    reposPerPage: number,
+    page: number
+  ) {
+    return await this.httpClient
+      .get(
+        `${this.API_URL}users/${githubUsername}/repos?per_page=${reposPerPage}&page=${page}`
+      )
+      .toPromise();
+  }
 }
