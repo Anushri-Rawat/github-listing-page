@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserReposComponent } from './components/user-repos/user-repos.component';
@@ -37,7 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxSkeletonLoaderModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

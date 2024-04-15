@@ -17,11 +17,13 @@
             {{ userDetails.name }}
           </h3>
           <div class="flex gap-4 item-center">
-            <p class="text-gray-500 font-medium md:text-base text-sm">
+            <p class="followers text-gray-500 font-medium md:text-base text-sm">
               Followers : {{ userDetails.followers }}
             </p>
             <div class="flex items-center">
-              <p class="text-gray-500 font-medium md:text-base text-sm">
+              <p
+                class="following text-gray-500 font-medium md:text-base text-sm"
+              >
                 Following :
                 <span class="text-gray-500 font-normal">{{
                   userDetails.following
@@ -29,10 +31,10 @@
               </p>
             </div>
           </div>
-          <p class="md:text-base text-gray-500 text-sm">
+          <p class="bio md:text-base text-gray-500 text-sm">
             {{ userDetails.bio }}
           </p>
-          <p class="md:text-base text-gray-900 text-sm">
+          <p class="location md:text-base text-gray-900 text-sm">
             <svg
               class="inline"
               xmlns="http://www.w3.org/2000/svg"

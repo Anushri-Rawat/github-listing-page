@@ -3,7 +3,7 @@
     <div *ngIf="userRepos; else loaderContainer">
       <div
         *ngIf="userRepos && userRepos.length > 0; else noRepos"
-        class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        class="repoContainer grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
       >
         <div
           *ngFor="
@@ -73,7 +73,9 @@
   </div>
 </ng-container>
 <ng-template #loaderContainer>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div
+    class="repoContainer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+  >
     <div
       *ngFor="let index of getRange(reposPerPage)"
       class="border bg-white rounded-md hover:border hover:border-blue-500 p-4 w-full shadow-md"
